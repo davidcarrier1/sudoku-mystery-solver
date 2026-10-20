@@ -1,0 +1,3 @@
+Puzzle,Difficulty,Algorithme,Conflits,Iterations,Temps_secondes,Resolu
+1,Simple,Hill Climbing Parallel,0,11734272,133.514483,True
+1,Simple,Genetique Parallel,0,41,2.623856,True
