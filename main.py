@@ -1,4 +1,3 @@
-
 import csv
 import random
 import os
@@ -64,6 +63,9 @@ def main():
             print("Iterations :", iterations)
             print(f"Temps : {temps:.4f} secondes")
             print("Resolu :", "Oui" if reussi else "Non")
+
+            print("\nSolution :" if reussi else "\nMeilleure grille trouvee :")
+            afficher_grille(solution)
 
             # Sauvegarder la solution candidate
             nom_fichier = (

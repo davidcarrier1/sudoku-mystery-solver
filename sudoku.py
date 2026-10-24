@@ -87,6 +87,48 @@ def fitness(solution):
     return score
 
 
+def verifier_solution(puzzle, solution):
+    """
+    Verification stricte et independante d'une solution candidate :
+      1. chaque ligne / colonne / bloc contient exactement les chiffres 1-9
+      2. toutes les cases initiales du puzzle sont respectees
+    Retourne (valide, liste_d_erreurs). Ne depend d'aucun code des algos.
+    """
+    erreurs = []
+
+    if solution is None:
+        return False, ["Aucune solution (grille None)"]
+
+    cible = set(range(1, 10))
+
+    for r in range(9):
+        if set(solution[r]) != cible:
+            erreurs.append(f"Ligne {r} invalide : {sorted(solution[r])}")
+
+    for c in range(9):
+        colonne = [solution[r][c] for r in range(9)]
+        if set(colonne) != cible:
+            erreurs.append(f"Colonne {c} invalide : {sorted(colonne)}")
+
+    for r0 in range(0, 9, 3):
+        for c0 in range(0, 9, 3):
+            bloc = [solution[i][j]
+                    for i in range(r0, r0 + 3)
+                    for j in range(c0, c0 + 3)]
+            if set(bloc) != cible:
+                erreurs.append(
+                    f"Bloc ({r0},{c0}) invalide : {sorted(bloc)}")
+
+    for r in range(9):
+        for c in range(9):
+            if puzzle[r][c] != 0 and puzzle[r][c] != solution[r][c]:
+                erreurs.append(
+                    f"Case initiale ({r},{c})={puzzle[r][c]} "
+                    f"modifiee en {solution[r][c]}")
+
+    return (len(erreurs) == 0), erreurs
+
+
 def afficher_grille(grille):
     for r in range(9):
         if r in (3, 6):
