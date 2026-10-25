@@ -122,4 +122,4 @@ Avec A*, on a vu à quel point la qualité de l'heuristique change tout. On a la
 
 Pour le sudoku, on a appris que ces méthodes n'ont aucune garantie, contrairement à A*. Le hill climbing de base se bloque dans les minimums locaux, et il a fallu ajouter les mouvements latéraux et les redémarrages. L'algorithme génétique classique ne foncionnait pas avec une performance suffisante, il arrivait souvent à 2 conflits et restait coincé,sans parfois ce résoudre. On a donc dû rechercher une solution pour optimiser le tout, et cela, a été réaliser par l'ajout d'une recherche locale sur les enfants et d'un redémarrage complet. On aurait aussi pu utiliser un recuit simulé comme on l'a vu en cours, cepandant il était plus complexe à mettre place.
 
-Finalement, le parallélisme n'améliore pas l'algorithme, mais il aide beaucoup quand le temps d'exécution dépend de la chance, avec 4 processus, il suffit qu'un seul soit chanceux. 
+Finalement, le parallélisme n'améliore pas l'algorithme, mais il aide beaucoup quand le temps d'exécution dépend de la chance, avec 4 processus, il suffit qu'un seul soit chanceux. :) (: :/ :| :\ >:(
