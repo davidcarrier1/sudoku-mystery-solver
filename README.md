@@ -60,10 +60,14 @@ Sélection des parents : On pige 3 individus au hasard dans la population et le 
 
 Crossover : pour chaque ligne de l'enfant, on la prend au hasard du parent 1 ou du parent 2. On a choisi ce croisement par lignes parce qu'un croisement qui mélange des morceaux de lignes casserait la validité des lignes.
 
-Mutation : pour chaque ligne de l'enfant (de base 10 % de prob), on échange deux cases libres de cette ligne (comme hill climbing). Le taux augment quand la population arrête de s'améliorer (max 50%).
-Si la meilleure fitness ne s'améliore pas pendant 40 générations, on garde seulement la meilleure moitié de la population et on remplace l'autre moitié par de nouveaux individus aléatoires (Diversité).
+Mutation : pour chaque ligne de l'enfant (probabilité 5%), on échange deux cases libres de cette ligne (comme hill climbing). Le taux augment quand la population arrête de s'améliorer (max 20%).
 
-On arrête quand on troucve un individu avec un fitness de 0. Une itération est une génération.
+Amélioration : après le croisement et la mutation, chaque enfant passe par 5 recherche locale. À chaque step, on pige une ligne au hazard, on essaie tous les échanges de deux cases libres dans la ême ligne et on applique le meilleur s'il n'est pas pire que la fitness. On évite également que l'algo stagne en mettant un threshold de 40 génération pour améliorer la meilleure fitness.On recommence avec une nouvelle population pour sortir des minimums locaux.
+
+Un individu avec une fitness de 0 est une solution
+
+#### Précisions
+Avec la version de base de l'algorithme génétique, on a laissé tourner le programme pendant plus de 24h sans avoir compléter la totalité des sudoku.  La mutation au hasard n’arrivait pas à régler les derniers conflits. On était beaucoup trop dépendant de la mutation au hazard. On avait aussi essayé quelque chose comme le culling du livre (http://lib.ysu.am/disciplines_bk/efdd4d1d4c2087fe1cbe03d9ced67f34.pdf), mais ces individus ne semblaient réellement pas faire de différence sur la rapidité ne l'exécution. C'est la raison pourquoi on a cherché différente variante ou façon de faire l'algorithme génétique. On a donc ajouté une recherche locale sur chaque enfant. Le génétique garde la diversité de la population et la descente règle les derniers conflits qui prennaient une éternité à résoudre.
 
 ### Parallélisme
 
