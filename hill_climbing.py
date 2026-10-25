@@ -112,11 +112,5 @@ def hill_climbing(
         if score == 0:
             break
 
-        redemarrages += 1
-        if nom_worker is not None and redemarrages % 20 == 0:
-            print(f"[HillClimbing Worker {nom_worker}] "
-                  f"Redemarrages: {redemarrages:,} | "
-                  f"Meilleur score: {meilleur_score_global}", flush=True)
-
     temps = time.perf_counter() - debut
     return meilleur_global, meilleur_score_global, iterations, temps
