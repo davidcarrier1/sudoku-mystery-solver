@@ -5,11 +5,7 @@ from sudoku import initialiser, fitness, conflits
 
 
 def _cout_local(grille, r, c1, c2):
-    """
-    Conflits des seules unités touchées par un échange dans la ligne r :
-    les colonnes c1 et c2 et les blocs 3x3 de (r, c1) et (r, c2).
-    (La ligne reste toujours valide, elle n'est pas comptée.)
-    """
+
     total = 0
 
     for c in (c1, c2):
@@ -34,13 +30,11 @@ def selection_tournoi(population, scores, taille_tournoi=3):
 
 
 def croisement(parent1, parent2):
-    """Chaque ligne vient d'un des deux parents (lignes toujours valides)."""
     return [(parent1 if random.random() < 0.5 else parent2)[r][:]
             for r in range(9)]
 
 
 def mutation(enfant, rows_libres, taux):
-    """Échange deux cases libres d'une même ligne (proba `taux` par ligne)."""
     for r, libres in rows_libres:
         if random.random() < taux:
             c1, c2 = random.sample(libres, 2)
@@ -49,12 +43,6 @@ def mutation(enfant, rows_libres, taux):
 
 
 def amelioration_locale(enfant, score, rows_libres, nb_pas):
-    """
-    Petite recherche locale appliquée à un enfant (algorithme mémétique).
-    À chaque pas : une ligne au hasard, on essaie tous les échanges de deux
-    cases libres dans cette ligne et on applique le meilleur s'il n'empire
-    pas la fitness (égalité départagée au hasard). Retourne le nouveau score.
-    """
     for _ in range(nb_pas):
         if score == 0:
             break
@@ -100,20 +88,6 @@ def genetique(
     stop_event=None,
     nom_worker=None,
 ):
-    """
-    Algorithme génétique avec amélioration locale (mémétique).
-
-    - individu : grille complète, lignes toujours valides
-    - fitness : conflits dans les colonnes et les blocs 3x3 (0 = résolu)
-    - sélection : tournoi de 3
-    - élitisme : les meilleurs passent tels quels
-    - croisement : chaque ligne vient d'un des deux parents
-    - mutation : échange de deux cases libres dans une ligne
-    - amélioration locale : quelques pas de descente sur chaque enfant
-    - stagnation : redémarrage complet de la population
-
-    Retourne (solution, conflits, generations, temps).
-    """
     debut = time.perf_counter()
     if population_size < 2:
         raise ValueError("La population doit contenir au moins 2 individus.")

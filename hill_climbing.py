@@ -5,11 +5,6 @@ from sudoku import initialiser, fitness, conflits
 
 
 def _cout_local(grille, r, c1, c2):
-    """
-    Conflits des seules unités touchées par un échange dans la ligne r :
-    les colonnes c1 et c2 et les blocs 3x3 de (r, c1) et (r, c2).
-    (La ligne reste toujours valide, elle n'est pas comptée.)
-    """
     total = 0
 
     for c in (c1, c2):
@@ -34,16 +29,7 @@ def hill_climbing(
     stop_event=None,
     nom_worker=None
 ):
-    """
-    Hill climbing (steepest ascent) avec :
-      - voisinage : échange de deux cases libres dans une même ligne
-      - évaluation incrémentale (delta de fitness, pas de copie de grille)
-      - mouvements latéraux (plateau) limités à `limite_plateau`
-      - redémarrages aléatoires quand on est bloqué
 
-    Retourne (solution, conflits, iterations, temps).
-    `iterations` = nombre de voisins évalués.
-    """
     debut = time.perf_counter()
 
     iterations = 0

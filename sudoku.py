@@ -37,7 +37,7 @@ def lire_puzzles_csv(fichier):
 
 
 def initialiser(grille):
-    """Remplit les cases vides sans modifier les chiffres initiaux."""
+
     solution = []
 
     for ligne in grille:
@@ -57,15 +57,11 @@ def initialiser(grille):
 
 
 def conflits(groupe):
-    """Compte les chiffres manquants parmi les chiffres de 1 à 9."""
     return 9 - len(set(groupe))
 
 
 def fitness(solution):
-    """
-    Fonction objectif à minimiser.
-    Un score de 0 signifie que le Sudoku est résolu.
-    """
+
     score = 0
 
     # Conflits dans les colonnes
@@ -88,12 +84,7 @@ def fitness(solution):
 
 
 def verifier_solution(puzzle, solution):
-    """
-    Verification stricte et independante d'une solution candidate :
-      1. chaque ligne / colonne / bloc contient exactement les chiffres 1-9
-      2. toutes les cases initiales du puzzle sont respectees
-    Retourne (valide, liste_d_erreurs). Ne depend d'aucun code des algos.
-    """
+
     erreurs = []
 
     if solution is None:
