@@ -1,0 +1,21 @@
+Puzzle,Difficulty,Algorithme,Conflits,Iterations,Temps_secondes,Resolu
+1,Simple,Hill Climbing Parallel,0,4561064,51.48463,True
+1,Simple,Genetique Parallel,0,82,7.48963,True
+2,Simple,Hill Climbing Parallel,0,30405078,347.135085,True
+2,Simple,Genetique Parallel,0,1199,109.289052,True
+3,Simple,Hill Climbing Parallel,0,1684548,19.52111,True
+3,Simple,Genetique Parallel,0,71,6.250974,True
+4,Simple,Hill Climbing Parallel,0,5056119,57.988486,True
+4,Simple,Genetique Parallel,0,450,38.666006,True
+5,Simple,Hill Climbing Parallel,0,12371883,142.923611,True
+5,Simple,Genetique Parallel,0,2517,231.454715,True
+6,Simple,Hill Climbing Parallel,0,202488,2.66815,True
+6,Simple,Genetique Parallel,0,120,10.648068,True
+7,Simple,Hill Climbing Parallel,0,4440056,51.45808,True
+7,Simple,Genetique Parallel,0,29,2.798663,True
+8,Simple,Hill Climbing Parallel,0,9042572,104.120404,True
+8,Simple,Genetique Parallel,0,658,62.79552,True
+9,Simple,Hill Climbing Parallel,0,76050900,867.617288,True
+9,Simple,Genetique Parallel,0,87,8.974887,True
+10,Simple,Hill Climbing Parallel,0,6872972,78.012032,True
+10,Simple,Genetique Parallel,0,688,59.82559,True
