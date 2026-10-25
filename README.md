@@ -73,10 +73,49 @@ Comme les exécutions sont indépendantes les unes des autres, on a décidé de 
 
 ### Résultats
 
+Chaque puzzle a été exécuté une fois par algorithme, avec les 4 processus en parallèle. Les résultats complets sont dans resultats.csv et les grilles dans les fichiers solution_*.txt. Les 20 exécutions ont fonctionnés et ont trouvés une solution valide ou il n'y avait plus de conflits.
 
-### Comparaison des algorithmes
+| Puzzle | Cote | HC itérations | HC temps (s) | G générations | G temps (s) |
+|---|---|---|---|---|---|
+| 1 | Simple | 4 561 064 | 51.5 | 82 | 7.5 |
+| 2 | Simple | 30 405 078 | 347.1 | 1 199 | 109.3 |
+| 3 | Simple | 1 684 548 | 19.5 | 71 | 6.3 |
+| 4 | Simple | 5 056 119 | 58.0 | 450 | 38.7 |
+| 5 | Simple | 12 371 883 | 142.9 | 2 517 | 231.5 |
+| 6 | Simple | 202 488 | 2.7 | 120 | 10.6 |
+| 7 | Simple | 4 440 056 | 51.5 | 29 | 2.8 |
+| 8 | Simple | 9 042 572 | 104.1 | 658 | 62.8 |
+| 9 | Simple | 76 050 900 | 867.6 | 87 | 9.0 |
+| 10 | Simple | 6 872 972 | 78.0 | 688 | 59.8 |
 
+Résumé :
 
+| | Hill climbing | Génétique |
+|---|---|---|
+| Puzzles résolus | 10 / 10 | 10 / 10 |
+| Temps moyen | 172.3 s | 53.8 s |
+| Temps médian | 68.0 s | 24.7 s |
+| Temps min | 2.7 s | 2.8 s |
+| Temps max | 867.6 s | 231.5 s |
+| Temps total | 1 723 s | 538 s |
+| Itérations moyennes | 15 068 768 voisins | 590 générations |
+
+## Comparaison des algorithmes
+
+Pour ce qui est du temps, on peut voir que l'algorithme génétique a été plus rapide 8 fois sur 10, avec un temps moyen de 24.7 s contre 68.0 s pour le hill climbing. On peut aussi dire que l'algorithme génétique à utilisé un temps total 3 fois plus petit que le hill climbing. 
+
+Au niveau de la constance d'éxécution on voit que le hill climbing est beaucoup plus dépendant de la chance. En effet, son temps varie entre 2.7 s et 867.6 s, alors que le génétique reste entre 2.8 s et 231.5 s. On peut confirmer ce qu'on a observé au début, les deux algorithmes ont une part de hasard. Cependant, le hill climbing a un temps de résolution qui varie plus que le génétique d'une exécution à l'autre, et ce, parce qu'on a ajouté la recherche locale et un redémarrage complet au génétique.
+
+Pour les nombres d'itérations, ils ne se comparent pas directement, puisqu'une itération du hill climbing est un voisin évalué et une itération du génétique est une génération complète (100 enfants, chacun avec de la recherche locale). 
+
+Au niveau de la mémoire, le hill climbing garde une seule grille à la fois. Le génétique garde 100 grilles, donc il utilise plus de mémoire, mais les effets reste assez minime avec un sudoku.
+
+Pour la facilité d'implémentation, le hill climbing est plus simple à écrire. Le génétique demande plus de pièces (sélection, croisement, mutation, redémarrage) et surtout beaucoup plus d'ajustements afin qu'il fonctionne sans attendre de nombreuses heures.
 
 ## Ce qu'on a appris
 
+Avec A*, on a vu à quel point la qualité de l'heuristique change tout. On a la même solution optimale, mais 13 fois plus d'états explorés avec les cases mal placées qu'avec Manhattan, et également beaucoup plus de temps et de mémoire.
+
+Pour le sudoku, on a appris que ces méthodes n'ont aucune garantie, contrairement à A*. Le hill climbing de base se bloque dans les minimums locaux, et il a fallu ajouter les mouvements latéraux et les redémarrages. L'algorithme génétique classique ne foncionnait pas avec une performance suffisante, il arrivait souvent à 2 conflits et restait coincé,sans parfois ce résoudre. On a donc dû rechercher une solution pour optimiser le tout, et cela, a été réaliser par l'ajout d'une recherche locale sur les enfants et d'un redémarrage complet. On aurait aussi pu utiliser un recuit simulé comme on l'a vu en cours, cepandant il était plus complexe à mettre place.
+
+Finalement, le parallélisme n'améliore pas l'algorithme, mais il aide beaucoup quand le temps d'exécution dépend de la chance, avec 4 processus, il suffit qu'un seul soit chanceux. 
